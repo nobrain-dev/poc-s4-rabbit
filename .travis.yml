@@ -1,0 +1,21 @@
+language: php
+
+
+php:
+  - '7.2.16'
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+before_install:
+  #- cp ci/.env.test.travis .env.test
+  - curl -LS http://get.sensiolabs.de/deptrac.phar -o deptrac
+  - chmod +x deptrac
+
+install:
+   - composer install
+
+script:
+    # Fake command for test purposes
+    - ./bin/console debug:container
