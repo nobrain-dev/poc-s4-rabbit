@@ -21,12 +21,16 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "Ms1\\": "poc/Ms1/src/",
+            "Ms2\\": "poc/Ms2/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "App\\Tests\\": "tests/",
+            "Ms1\\Tests\\": "poc/Ms1/tests/",
+            "Ms2\\Tests\\": "poc/Ms2/tests/"
         }
     },
     "replace": {
