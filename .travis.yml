@@ -16,6 +16,10 @@ before_install:
 install:
    - composer install
 
+before_script:
+    # Validate composer.json
+    - composer validate --no-check-all --strict
+
 script:
     # Fake command for test purposes
     - ./bin/console debug:container
