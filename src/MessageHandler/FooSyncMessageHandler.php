@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\MessageHandler;
 
-use App\Message\FooMessage;
+use App\Message\FooSyncMessage;
 
-class FooMessageHandler
+class FooSyncMessageHandler
 {
-    public function __invoke(FooMessage $message)
+    public function __invoke(FooSyncMessage $message)
     {
         // ... do some work - like sending an SMS message!
         echo sprintf('The Foo message with "%s"  and  "%s" is recived...'.PHP_EOL, $message->alpha(), $message->beta());

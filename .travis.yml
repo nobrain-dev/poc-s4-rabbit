@@ -21,5 +21,5 @@ before_script:
     - composer validate --no-check-all --strict
 
 script:
-    # Fake command for test purposes
+    # FakeMessenger command for test purposes
     - ./bin/console debug:container

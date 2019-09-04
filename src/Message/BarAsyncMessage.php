@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Message;
 
-class FooMessage
+class BarAsyncMessage
 {
     /** @var string */
     private $alpha;
@@ -13,7 +13,7 @@ class FooMessage
     private $beta;
 
     /**
-     * FooMessage constructor.
+     * FooSyncMessage constructor.
      *
      * @param string $alpha
      * @param string $beta

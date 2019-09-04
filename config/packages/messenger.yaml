@@ -9,6 +9,16 @@ framework:
             # failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
+            async: '%env(MESSENGER_TRANSPORT_DSN)%/async'
+            async_2: '%env(MESSENGER_TRANSPORT_DSN)%/async2'
+
+
+            consumer_async: '%env(MESSENGER_TRANSPORT_DSN)%/consumer_async'
+
+
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
+
+            #'App\Message\FooMessage': []
+            'App\Message\BarAsyncMessage': [async, async_2, consumer_async]

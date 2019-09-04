@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Command\Fake;
+namespace App\Command\FakeMessenger;
 
-use App\Message\FooMessage;
+use App\Message\BarAsyncMessage;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -12,9 +12,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class BasicSyncMessage extends Command
+class BasicAsyncFanoutMessage extends Command
 {
-    protected static $defaultName = 'fake:message:basic-sync';
+    protected static $defaultName = 'fake:message:basic-async';
 
     /** @var MessageBusInterface */
     private $messageBus;
@@ -46,7 +46,7 @@ class BasicSyncMessage extends Command
             'beta' => 'beta',
         ];
 
-        $message = new FooMessage('alpha', 'beta');
+        $message = new BarAsyncMessage('alpha', 'beta');
 
         $io->writeln('Message Data : '.json_encode($messageData));
         $io->writeln('');
