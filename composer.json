@@ -1,4 +1,6 @@
 {
+    "name": "nobrain-dev/poc-s4-rabbit",
+    "description": "poc: s4 rabbit integration with messenger component",
     "type": "project",
     "license": "proprietary",
     "require": {
