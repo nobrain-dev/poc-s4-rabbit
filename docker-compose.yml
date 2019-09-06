@@ -2,6 +2,26 @@ version: "3"
 
 services:
 
+
+  php:
+    #image: php:7.2
+    image: webdevops/php-dev:7.2
+    user: application
+    working_dir: /app
+    environment:
+        WEB_DOCUMENT_INDEX: index.php
+        WEB_DOCUMENT_ROOT: /app
+    #env_file:
+      #- .env
+      #- ../.env.test
+    volumes:
+      - '.:/app'
+    depends_on:
+      - rabbitmq
+    links:
+      - rabbitmq
+
+
   rabbitmq:
     image: rabbitmq:3-management
     environment:
