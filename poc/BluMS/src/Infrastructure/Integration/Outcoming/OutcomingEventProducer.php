@@ -22,11 +22,11 @@ class OutcomingEventProducer
     {
         $message = [
             //'event_id' => $order->getId(),
-            'event_name' => $event->eventName,
+            'event_name' => $event->eventName(),
             'event_body' => json_encode($event->__toArray()),
             'timestamp' => date('Y-m-d H:i:s'),
         ];
 
-        $this->producer->publish(json_encode($message));
+        $this->producer->publish(json_encode($message), $event->eventName());
     }
 }

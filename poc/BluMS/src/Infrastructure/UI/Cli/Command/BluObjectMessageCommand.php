@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BluMS\Infrastructure\UI\Cli\Command;
 
 use BluMS\Domain\Model\BluObject\Event\BluObjectWasCreated;
+use BluMS\Infrastructure\Integration\Outcoming\OutcomingEventProducer;
 use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,10 +21,9 @@ class BluObjectMessageCommand extends Command
 
     /**
      * OrderGeneratorCommand constructor.
-     *
-     * @param ProducerInterface $producer
      */
-    public function __construct(ProducerInterface $producer)
+    //public function __construct(ProducerInterface $producer)
+    public function __construct(OutcomingEventProducer $producer)
     {
         parent::__construct();
         $this->producer = $producer;
@@ -52,6 +52,7 @@ class BluObjectMessageCommand extends Command
         //$io->writeln('Message Data : '.json_encode($messageData));
         $io->writeln('');
 
-        $this->producer->publish(json_encode($message->__toArray()));
+        //$this->producer->publish(json_encode($message->__toArray()));
+        $this->producer->add($message);
     }
 }

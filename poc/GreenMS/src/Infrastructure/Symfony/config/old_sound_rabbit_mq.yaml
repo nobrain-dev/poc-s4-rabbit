@@ -1,0 +1,39 @@
+old_sound_rabbit_mq:
+#    connections:
+#        default:
+#            url: '%env(RABBITMQ_URL)%'
+#    producers:
+#        # use 'old_sound_rabbit_mq.task_producer' service to send data.
+#        task:
+#            connection:       default
+#            exchange_options: { name: 'task', type: direct }
+#    consumers:
+#        task:
+#            connection:       default
+#            exchange_options: { name: 'task', type: direct }
+#            queue_options:    { name: 'task'}
+#            callback:         App\Consumer\TaskConsumer
+
+
+    producers:
+
+        green_outcoming_event:
+            connection:       default
+            exchange_options: { name: 'blu_outcoming_event_ex', type: topic  }
+            #service_alias:    my_app_service # no alias by default
+            #class: My\Custom\Producer
+            #class: BluMS\Infrastructure\Integration\Outcoming\OutcomingEventProducer
+
+
+    consumers:
+
+        green_incoming_event:
+            connection:       default
+            exchange_options: { name: 'blu_outcoming_event_ex', type: topic }
+            queue_options:
+                name: 'green_incoming_event_qu'
+                routing_keys:
+                    - 'blu.*'
+                    - 'audi.*'
+                    - '#.mercedes.*'
+            callback: green_acl.consumer.incoming_event
