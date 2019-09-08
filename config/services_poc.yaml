@@ -1,0 +1,8 @@
+imports:
+    # BlueMS config
+    - { resource: './../poc/BluMS/src/Infrastructure/Symfony/config/services.yaml' }
+    - { resource: './../poc/BluMS/src/Infrastructure/Symfony/config/old_sound_rabbit_mq.yaml' }
+
+    # GreenMS config
+    #- { resource: './../poc/GreenMS/src/Infrastructure/Symfony/config/services.yaml' }
+    #- { resource: './../poc/GreenMS/src/Infrastructure/Symfony/config/old_sound_rabbit_mq.yaml' }

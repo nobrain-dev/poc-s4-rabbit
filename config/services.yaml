@@ -1,3 +1,5 @@
+imports:
+    - { resource: services_poc.yaml }
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
 
@@ -15,7 +17,7 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Entity,MessageReceiver,Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -33,3 +35,24 @@ services:
         tags: ['messenger.message_handler']
 
 
+
+
+
+
+
+
+
+
+
+    #
+    # HOWTO CUSTOM RECEIVER -- incomplete --
+    #
+#    messenger.retry.multiplier_retry_strategy.custom_receiver:
+#        alias: '@Symfony\Component\Messenger\Retry\MultiplierRetryStrategy'
+
+    #custom.receiver:
+        #alias: '@App\MessageReceiver\NewOrdersFromCsvFileReceiver'
+
+#    App\MessageReceiver\NewOrdersFromCsvFileReceiver:
+#        tags:
+#            - { name: 'messenger.receiver', alias: 'custom_receiver' }
