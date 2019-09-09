@@ -15,9 +15,11 @@
         "symfony/framework-bundle": "4.3.*",
         "symfony/messenger": "4.3.*",
         "symfony/monolog-bundle": "^3.4",
+        "symfony/test-pack": "^1.0",
         "symfony/yaml": "4.3.*"
     },
     "require-dev": {
+        "friends-of-behat/symfony-extension": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.15"
     },
     "config": {
