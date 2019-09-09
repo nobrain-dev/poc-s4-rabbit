@@ -46,6 +46,6 @@ services:
 
 
 
-#    BluMS\Infrastructure\Integration\Outcoming\OutcomingEventProducer:
-#        arguments:
-#            - '@old_sound_rabbit_mq.blu_outcoming_event_producer'
+    GreenMS\Infrastructure\Integration\Outcoming\OutcomingEventProducer:
+        arguments:
+            - '@old_sound_rabbit_mq.green_outcoming_event_producer'
