@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
+//use AMQPChannel;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use LogicException;
+use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Message\AMQPMessage;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -86,12 +88,13 @@ final class RabbitMqContext implements Context
      */
     private function getQueuedMessages($producerName)
     {
-        $channel = $this->getChannel($producerName);
+        $channel = $this->getChannel($producerName); //var_dump($channel);
 
         $queuedMessages = [];
         do {
             /** @var AMQPMessage $message */
-            $message = $channel->basic_get($this->getQueueName($producerName));
+            //$message = $channel->basic_get($this->getQueueName($producerName)); //var_dump($this->getQueueName($producerName)); //var_dump($message);
+            $message = $channel->basic_get('blu_incomin_event_qu');
             if (!$message instanceof AMQPMessage) {
                 break;
             }
@@ -128,7 +131,9 @@ final class RabbitMqContext implements Context
      */
     private function getQueueName($producerName)
     {
-        return sprintf('%s_queue', $producerName);
+        //return sprintf('%s_queue', $producerName);
+        //var_dump(sprintf('%s_qu', $producerName));
+        return sprintf('%s_qu', $producerName);
     }
 
     /**

@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace BluMS\Infrastructure\UI\Cli\Command;
+namespace RedMS\Infrastructure\UI\Cli\Command;
 
-use BluMS\Domain\Model\BluObject\Event\NewBluObjectCreated;
-use BluMS\Infrastructure\Integration\Outcoming\BluIntegrationEventProducer;
+use RedMS\Domain\Model\Event\NewRedObjectCreated;
+use RedMS\Infrastructure\Integration\Outcoming\RedIntegrationEventProducer;
 use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class BluObjectMessageCommand extends Command
+class RedObjectMessageCommand extends Command
 {
-    protected static $defaultName = 'blums:object:message';
+    protected static $defaultName = 'redms:object:message';
 
     /** @var ProducerInterface */
     private $producer;
 
-    public function __construct(BluIntegrationEventProducer $producer)
+    public function __construct(RedIntegrationEventProducer $producer)
     {
         parent::__construct();
         $this->producer = $producer;
@@ -28,7 +28,7 @@ class BluObjectMessageCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Generate BluObject event and dispach with custom producer')
+            ->setDescription('Generate RedObject event and dispach with custom producer')
         ;
     }
 
@@ -36,9 +36,9 @@ class BluObjectMessageCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $message = NewBluObjectCreated::withData('001', 'blu_object_name', 'http://www.blu.com');
+        $message = NewRedObjectCreated::withData('001', 'red_object_name', 'http://www.red.com');
 
-        $io->writeln('Generate BluObject event and dispach with custom producer');
+        $io->writeln('Generate RedObject event and dispach with custom producer');
 
         $io->writeln('');
 

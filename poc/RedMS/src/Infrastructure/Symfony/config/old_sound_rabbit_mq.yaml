@@ -1,0 +1,21 @@
+old_sound_rabbit_mq:
+
+    producers:
+
+        red_bc_integration_event:
+            connection:       default
+            exchange_options: { name: 'bc_integration_event_ex', type: topic  }
+
+
+    consumers:
+
+#        green_acl_from_blu:
+#            connection:       default
+#            exchange_options: { name: 'blu_outcoming_event_ex', type: topic }
+#            queue_options:
+#                name: 'green_incoming_event_qu'
+#                routing_keys:
+#                    - 'blu.*'
+#                    #- 'audi.*'
+#                    #- '#.mercedes.*'
+#            callback: green_acl.consumer.incoming_event

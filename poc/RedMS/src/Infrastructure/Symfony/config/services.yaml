@@ -19,14 +19,14 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    GreenMS\Infrastructure\UI\Web\Controller\:
+    RedMS\Infrastructure\UI\Web\Controller\:
         resource: '../../UI/Web/Controller'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    GreenMS\Infrastructure\UI\Cli\Command\:
+    RedMS\Infrastructure\UI\Cli\Command\:
         resource: '../../UI/Cli/Command'
         tags: ['console.command']
 
@@ -38,18 +38,15 @@ services:
 
 
 
-    green_acl.from_blu.consumer.incoming_event:
-        class: GreenMS\Infrastructure\Integration\ACL\Consumer\BluACLConsumer
+    red_acl.consumer.incoming_event:
+        class: RedMS\Infrastructure\Integration\ACL\Consumer\GreenACLConsumer
         arguments:
-            - '@logger'
-
-    green_acl.from_red.consumer.incoming_event:
-        class: GreenMS\Infrastructure\Integration\ACL\Consumer\RedACLConsumer
-        arguments:
+            #- '@doctrine.orm.entity_manager'
             - '@logger'
 
 
-    GreenMS\Infrastructure\Integration\Outcoming\GreenIntegrationEventProducer:
+
+    RedMS\Infrastructure\Integration\Outcoming\RedIntegrationEventProducer:
         arguments:
-            - '@old_sound_rabbit_mq.green_bc_integration_event_producer'
+            - '@old_sound_rabbit_mq.red_bc_integration_event_producer'
         public: true

@@ -35,32 +35,25 @@ services:
 
 
 
-    BluMS\Infrastructure\UI\Cli\Command\OrderGeneratorCommand:
-        arguments:
-            - '@old_sound_rabbit_mq.order_create_producer'
+
 
     BluMS\Infrastructure\UI\Cli\Command\BluObjectMessageCommand:
         arguments:
-            #- '@old_sound_rabbit_mq.blu_outcoming_event_producer'
-
-            - '@BluMS\Infrastructure\Integration\Outcoming\OutcomingEventProducer'
+            - '@BluMS\Infrastructure\Integration\Outcoming\BluIntegrationEventProducer'
 
 
 
-    application_frontend.consumer.order_create_1:
-        class: BluMS\Infrastructure\ACL\Consumer\OrderCreate1Consumer
+    blu_acl.from_green.consumer.incoming_event:
+        class: BluMS\Infrastructure\Integration\ACL\Consumer\GreenACLConsumer
         arguments:
-            #- '@doctrine.orm.entity_manager'
             - '@logger'
 
-    application_frontend.consumer.order_create_2:
-        class: BluMS\Infrastructure\ACL\Consumer\OrderCreate1Consumer
+    blu_acl.from_red.consumer.incoming_event:
+        class: BluMS\Infrastructure\Integration\ACL\Consumer\RedACLConsumer
         arguments:
-            #- '@doctrine.orm.entity_manager'
             - '@logger'
 
-
-    BluMS\Infrastructure\Integration\Outcoming\OutcomingEventProducer:
+    BluMS\Infrastructure\Integration\Outcoming\BluIntegrationEventProducer:
         arguments:
-            - '@old_sound_rabbit_mq.blu_outcoming_event_producer'
+            - '@old_sound_rabbit_mq.blu_bc_integration_event_producer'
         public: true

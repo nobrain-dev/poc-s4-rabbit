@@ -2,17 +2,20 @@
 
 declare(strict_types=1);
 
-namespace BluMS\Infrastructure\ACL\Consumer;
+namespace RedMS\Infrastructure\Integration\ACL\Consumer;
 
+use Exception;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
+use Psr\Log\LoggerInterface;
 
-class OrderCreate2Consumer implements ConsumerInterface
+class RedACLConsumer implements ConsumerInterface
 {
+    /** @var LoggerInterface */
     private $logger;
 
     /**
-     * OrderCreate2Consumer constructor.
+     * OrderCreate1Consumer constructor.
      *
      * @param $logger
      */
@@ -34,9 +37,12 @@ class OrderCreate2Consumer implements ConsumerInterface
 
         try {
             // Application log
-            $this->log($body);
+
+            //var_dump($body);
+            $this->log(json_encode($body));
+
             // STD_OUTPUT
-            echo sprintf('Order create 1 - ID:%s @ %s ...', $body['order_id'], date('Y-m-d H:i:s')).PHP_EOL;
+            //echo sprintf('Order create 1 - ID:%s @ %s ...', $body['order_id'], date('Y-m-d H:i:s')).PHP_EOL;
             echo json_encode($message).PHP_EOL;
         } catch (Exception $e) {
             $this->logError($message, $e->getMessage());

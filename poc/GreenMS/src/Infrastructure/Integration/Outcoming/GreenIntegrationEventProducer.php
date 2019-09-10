@@ -7,7 +7,7 @@ namespace GreenMS\Infrastructure\Integration\Outcoming;
 use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Prooph\Common\Messaging\DomainEvent;
 
-class OutcomingEventProducer
+class GreenIntegrationEventProducer
 {
     /** @var ProducerInterface */
     private $producer;

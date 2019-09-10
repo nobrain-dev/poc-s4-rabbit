@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace BluMS\Infrastructure\ACL\Consumer;
+namespace BluMS\Infrastructure\Integration\ACL\Consumer;
 
 use Exception;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 use Psr\Log\LoggerInterface;
 
-class OrderCreate1Consumer implements ConsumerInterface
+class GreenACLConsumer implements ConsumerInterface
 {
     /** @var LoggerInterface */
     private $logger;
@@ -43,6 +43,7 @@ class OrderCreate1Consumer implements ConsumerInterface
 
             // STD_OUTPUT
             //echo sprintf('Order create 1 - ID:%s @ %s ...', $body['order_id'], date('Y-m-d H:i:s')).PHP_EOL;
+            echo sprintf('Blu Anti Corruption Layer from Green Bounded Contect - EVENT ID:%s @ %s ...', $body['event_id'], date('Y-m-d H:i:s')).PHP_EOL;
             echo json_encode($message).PHP_EOL;
         } catch (Exception $e) {
             $this->logError($message, $e->getMessage());

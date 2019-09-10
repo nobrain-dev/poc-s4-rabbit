@@ -7,7 +7,9 @@ namespace App\Tests\Behat;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use BluMS\Infrastructure\UI\Cli\Command\BluObjectMessageCommand;
+use BluMS\Infrastructure\UI\Cli\Command\OrderGeneratorCommand;
 use Exception;
+use GreenMS\Infrastructure\UI\Cli\Command\RedObjectMessageCommand;
 use LogicException;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
@@ -66,7 +68,7 @@ final class CliCommandContext implements Context
     public function iRunTheBluObjectMessageCommand()
     {
         $producer = $this->kernel->getContainer()
-            ->get('BluMS\Infrastructure\Integration\Outcoming\OutcomingEventProducer');
+            ->get('BluMS\Infrastructure\Integration\Outcoming\BluIntegrationEventProducer');
 
         $this->setApplication();
         $this->addCommand(new BluObjectMessageCommand($producer));
@@ -137,5 +139,47 @@ final class CliCommandContext implements Context
         $this->commandTester = new CommandTester($command);
 
         return $this->commandTester;
+    }
+
+    /**
+     * @Given /^I run the green:object:message command$/
+     */
+    public function iRunTheGreenObjectMessageCommand()
+    {
+        $producer = $this->kernel->getContainer()
+            ->get('GreenMS\Infrastructure\Integration\Outcoming\GreenIntegrationEventProducer');
+
+        $this->setApplication();
+        $this->addCommand(new RedObjectMessageCommand($producer));
+        $this->setCommand('green:object:message');
+        //$this->setOptions([]);
+
+        try {
+            $this->getTester($this->command)->execute([]);
+        } catch (Exception $exception) {
+            $path = explode('\\', get_class($exception));
+            $this->commandException = array_pop($path);
+        }
+    }
+
+    /**
+     * @Given /^I run the blums:order:generate command$/
+     */
+    public function iRunTheBlumsOrderGenerateCommand()
+    {
+        $producer = $this->kernel->getContainer()
+            ->get('old_sound_rabbit_mq.order_create_producer');
+
+        $this->setApplication();
+        $this->addCommand(new OrderGeneratorCommand($producer));
+        $this->setCommand('blums:order:generate');
+        //$this->setOptions([]);
+
+        try {
+            $this->getTester($this->command)->execute([]);
+        } catch (Exception $exception) {
+            $path = explode('\\', get_class($exception));
+            $this->commandException = array_pop($path);
+        }
     }
 }

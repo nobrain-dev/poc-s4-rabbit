@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GreenMS\Infrastructure\UI\Cli\Command;
 
-use GreenMS\Infrastructure\Integration\Outcoming\OutcomingEventProducer;
 use GreenMS\Domain\Model\Event\NewGreenObjectCreated;
+use GreenMS\Infrastructure\Integration\Outcoming\GreenIntegrationEventProducer;
 use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -19,15 +19,10 @@ class GreenObjectMessageCommand extends Command
     /** @var ProducerInterface */
     private $producer;
 
-    /**
-     * OrderGeneratorCommand constructor.
-     */
-    //public function __construct(ProducerInterface $producer)
-    public function __construct(OutcomingEventProducer $producer)
+    public function __construct(GreenIntegrationEventProducer $producer)
     {
         parent::__construct();
         $this->producer = $producer;
-        //$this->producer->setContentType('application/json');
     }
 
     protected function configure()
@@ -41,9 +36,9 @@ class GreenObjectMessageCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $message = NewGreenObjectCreated::withData('001', 'my_name', 'http://www.xxxxx.com');
+        $message = NewGreenObjectCreated::withData('001', 'green_object_name', 'http://www.green.com');
 
-        $io->writeln('Generate BluObject event and dispach with custom producer');
+        $io->writeln('Generate GreenObject event and dispach with custom producer');
 
         $io->writeln('');
 

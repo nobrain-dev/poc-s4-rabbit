@@ -9,7 +9,7 @@ use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 use Psr\Log\LoggerInterface;
 
-class GreenACLConsumer implements ConsumerInterface
+class RedACLConsumer implements ConsumerInterface
 {
     /** @var LoggerInterface */
     private $logger;
@@ -43,6 +43,7 @@ class GreenACLConsumer implements ConsumerInterface
 
             // STD_OUTPUT
             //echo sprintf('Order create 1 - ID:%s @ %s ...', $body['order_id'], date('Y-m-d H:i:s')).PHP_EOL;
+            echo sprintf('Green Anti Corruption Layer from Red Bounded Contect - EVENT ID:%s @ %s ...', $body['event_id'], date('Y-m-d H:i:s')).PHP_EOL;
             echo json_encode($message).PHP_EOL;
         } catch (Exception $e) {
             $this->logError($message, $e->getMessage());

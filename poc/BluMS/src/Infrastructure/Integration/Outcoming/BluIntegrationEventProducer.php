@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace BluMS\Infrastructure\Integration\Outcoming;
 
-use BluMS\Domain\Model\BluObject\Event\publicEventInterface;
 use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
+use Prooph\Common\Messaging\DomainEvent;
 
-class OutcomingEventProducer
+class BluIntegrationEventProducer
 {
     /** @var ProducerInterface */
     private $producer;
@@ -18,15 +18,15 @@ class OutcomingEventProducer
         $this->producer->setContentType('application/json');
     }
 
-    public function add(publicEventInterface $event)
+    public function add(DomainEvent $event)
     {
         $message = [
-            //'event_id' => $order->getId(),
-            'event_name' => $event->eventName(),
-            'event_body' => json_encode($event->__toArray()),
+            'event_id' => $event->uuid(),
+            'event_name' => $event->messageName(),
+            'event_body' => json_encode($event->payload()),
             'timestamp' => date('Y-m-d H:i:s'),
         ];
 
-        $this->producer->publish(json_encode($message), $event->eventName());
+        $this->producer->publish(json_encode($message), $event->messageName());
     }
 }
