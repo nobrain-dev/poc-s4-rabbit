@@ -138,6 +138,9 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
+    "odolbeau/rabbit-mq-admin-toolkit": {
+        "version": "v4.0.2"
+    },
     "php-amqplib/php-amqplib": {
         "version": "v2.10.0"
     },
@@ -171,6 +174,9 @@
     },
     "ramsey/uuid": {
         "version": "3.8.0"
+    },
+    "swarrot/swarrot": {
+        "version": "v3.4.0"
     },
     "symfony/browser-kit": {
         "version": "v4.3.4"

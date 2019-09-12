@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bc2cb6028fa5a53429c5447cf6091ff",
+    "content-hash": "e0cde3eecf801299064364de638a2a1c",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -143,6 +143,56 @@
                 "psr-3"
             ],
             "time": "2019-09-06T13:49:17+00:00"
+        },
+        {
+            "name": "odolbeau/rabbit-mq-admin-toolkit",
+            "version": "v4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/odolbeau/rabbit-mq-admin-toolkit.git",
+                "reference": "19f9962ce9267ae088132dbcccbdc4607d0872cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/odolbeau/rabbit-mq-admin-toolkit/zipball/19f9962ce9267ae088132dbcccbdc4607d0872cb",
+                "reference": "19f9962ce9267ae088132dbcccbdc4607d0872cb",
+                "shasum": ""
+            },
+            "require": {
+                "swarrot/swarrot": "~2.0|~3.0",
+                "symfony/console": "^2.7|^3.0|^4.0",
+                "symfony/yaml": "^2.4|^3.0|^4.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~1.12",
+                "phpunit/phpunit": "^5.7"
+            },
+            "bin": [
+                "rabbit"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Bab\\RabbitMq": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "RabbitMQ administration toolkit",
+            "keywords": [
+                "AMQP",
+                "admin",
+                "rabbitmq",
+                "toolkit"
+            ],
+            "time": "2017-12-27T10:48:40+00:00"
         },
         {
             "name": "php-amqplib/php-amqplib",
@@ -570,6 +620,77 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "swarrot/swarrot",
+            "version": "v3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swarrot/swarrot.git",
+                "reference": "698fb79bd8904e5da244ac33312ad14e517bac97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/698fb79bd8904e5da244ac33312ad14e517bac97",
+                "reference": "698fb79bd8904e5da244ac33312ad14e517bac97",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "psr/log": "^1.0",
+                "symfony/options-resolver": "^3.4 || ^4.1"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^2.8",
+                "doctrine/common": "^2.3",
+                "doctrine/dbal": "^2.2",
+                "php-amqplib/php-amqplib": "^2.1",
+                "php-http/curl-client": "^2.0",
+                "phpunit/phpunit": "^7.5",
+                "queue-interop/amqp-interop": "^0.5",
+                "queue-interop/queue-interop": "^0.5",
+                "sentry/sentry": "^1.5",
+                "stomp-php/stomp-php": "^4.3.1"
+            },
+            "suggest": {
+                "aws/aws-sdk-php": "^2.8",
+                "pecl-amqp": "*",
+                "php-amqplib/php-amqplib": "^2.1",
+                "queue-interop/amqp-interop": "^0.5",
+                "queue-interop/queue-interop": "^0.5",
+                "sentry/sentry": "^1.5",
+                "stomp-php/stomp-php": "^4.3.1",
+                "symfony/console": "^3.4 || ^4.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Swarrot\\": "src/Swarrot"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Dolbeau",
+                    "homepage": "http://odolbeau.fr/"
+                }
+            ],
+            "description": "A simple lib to consume RabbitMQ queues",
+            "keywords": [
+                "AMQP",
+                "queue",
+                "swarrot",
+                "worker"
+            ],
+            "time": "2019-05-19T15:13:16+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -2012,6 +2133,60 @@
                 "logging"
             ],
             "time": "2019-06-20T12:18:19+00:00"
+        },
+        {
+            "name": "symfony/options-resolver",
+            "version": "v4.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/options-resolver.git",
+                "reference": "81c2e120522a42f623233968244baebd6b36cb6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/81c2e120522a42f623233968244baebd6b36cb6a",
+                "reference": "81c2e120522a42f623233968244baebd6b36cb6a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\OptionsResolver\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony OptionsResolver Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "config",
+                "configuration",
+                "options"
+            ],
+            "time": "2019-08-08T09:29:19+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
@@ -4629,60 +4804,6 @@
             "description": "Symfony Doctrine Bridge",
             "homepage": "https://symfony.com",
             "time": "2019-08-26T11:29:20+00:00"
-        },
-        {
-            "name": "symfony/options-resolver",
-            "version": "v4.3.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "81c2e120522a42f623233968244baebd6b36cb6a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/81c2e120522a42f623233968244baebd6b36cb6a",
-                "reference": "81c2e120522a42f623233968244baebd6b36cb6a",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\OptionsResolver\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony OptionsResolver Component",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "config",
-                "configuration",
-                "options"
-            ],
-            "time": "2019-08-08T09:29:19+00:00"
         },
         {
             "name": "symfony/orm-pack",
