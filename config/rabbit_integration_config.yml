@@ -1,0 +1,123 @@
+my_vhost_name:
+#    permissions:
+#        my_user:
+#            configure: amq\.gen.*
+#            read: .*
+#            write: .*
+    parameters:
+        with_dl: true # If true, all queues will have a dl and the corresponding mapping with the exchange "dl"
+        with_unroutable: true # If true, all exchange will be declared with an unroutable config
+
+#    exchanges:
+#        my_exchange:
+#            type: direct
+#            durable: true
+#            with_unroutable: true #if true, unroutable exchange will be created (if not already set as global parameter)
+#
+#        my_exchange_headers:
+#            type: headers
+#            durable: true
+#
+#    queues:
+#        my_queue:
+#            durable: true
+#            delay: 5000 #create delayed message queue (value is in milliseconds)
+#            bindings:
+#                -
+#                    exchange: my_exchange
+#                    routing_key: my_routing_key
+#                -
+#                    exchange: my_exchange
+#                    routing_key: other_routing_key
+#
+#        another_queue:
+#            durable: true
+#            with_dl: false
+#            retries: [25, 125, 625]
+#            bindings:
+#                -
+#                    exchange: my_exchange_headers
+#                    x-match: all
+#                    matches: {header_name: value, other_header_name: some_value}
+
+    exchanges:
+
+
+        blu_integration_outcomin_exchange:
+            type: topic
+            durable: true
+            with_unroutable: true #if true, unroutable exchange will be created (if not already set as global parameter)
+
+
+        green_integration_outcomin_exchange:
+            type: topic
+            durable: true
+            with_unroutable: true #if true, unroutable exchange will be created (if not already set as global parameter)
+
+
+        red_integration_outcomin_exchange:
+            type: topic
+            durable: true
+            with_unroutable: true #if true, unroutable exchange will be created (if not already set as global parameter)
+#        my_exchange_headers:
+#            type: headers
+#            durable: true
+
+
+    queues:
+
+
+        blu_integration_acl_queue:
+            durable: true
+            retries: [5,10,15]
+            #delay: 5000 #create delayed message queue (value is in milliseconds)
+            arguments:
+                'x-max-length': 500
+                'x-max-length-bytes': 50000000
+            bindings:
+                -
+                    exchange: green_integration_outcomin_exchange
+                    routing_key: 'green.*'
+                -
+                    exchange: red_integration_outcomin_exchange
+                    routing_key: red.*
+
+
+        green_integration_acl_queue:
+            durable: true
+            retries: [5,10,15]
+            #delay: 5000 #create delayed message queue (value is in milliseconds)
+            arguments:
+                'x-max-length': 500
+                'x-max-length-bytes': 50000000
+            bindings:
+                -
+                    exchange: blu_integration_outcomin_exchange
+                    routing_key: 'blu.*'
+                -
+                    exchange: red_integration_outcomin_exchange
+                    routing_key: 'red.*'
+
+
+
+#    queues:
+#        my_queue:
+#            durable: true
+#            delay: 5000 #create delayed message queue (value is in milliseconds)
+#            bindings:
+#                -
+#                    exchange: my_exchange
+#                    routing_key: my_routing_key
+#                -
+#                    exchange: my_exchange
+#                    routing_key: other_routing_key
+#
+#        another_queue:
+#            durable: true
+#            with_dl: false
+#            retries: [25, 125, 625]
+#            bindings:
+#                -
+#                    exchange: my_exchange_headers
+#                    x-match: all
+#                    matches: {header_name: value, other_header_name: some_value}
