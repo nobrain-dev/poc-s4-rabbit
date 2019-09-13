@@ -6,6 +6,10 @@ old_sound_rabbit_mq:
             connection:       default
             exchange_options: { name: 'bc_integration_event_ex', type: topic  }
 
+        blu_dead_letter_exchange:
+            connection:       default
+            exchange_options: { name: 'blu_dead_letter_exchange_ex', type: direct  }
+
 
     consumers:
 
@@ -22,6 +26,14 @@ old_sound_rabbit_mq:
                         - 'green.#'
                 blu-from-red-integration-event:
                     name:     'blu-from-red-integration-event_qu'
+                    arguments:  #{'max-length': ['I', 10], 'max-length-bytes': ['I', 0.1]}
+                        'x-max-length': ['I', 10]
+                        'x-max-length-bytes': ['I', 50000000]
+                        #'x-overflow': ['S', 'reject-publish']
+                        'x-overflow': ['S', 'reject-publish']
+                        'x-dead-letter-exchange': ['S', 'blu_dead_letter_exchange_ex']
+                        'x-dead-letter-routing-key': ['S', 'blu-from-red-integration-event']
+
                     callback: blu_acl.from_red.consumer.incoming_event
                     routing_keys:
                         - 'red.#'
