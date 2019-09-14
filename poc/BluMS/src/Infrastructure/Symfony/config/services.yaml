@@ -57,3 +57,7 @@ services:
         arguments:
             - '@old_sound_rabbit_mq.blu_bc_integration_event_producer'
         public: true
+
+    BluMS\Infrastructure\Integration\Outcoming\BluIntegrationEventPublisher:
+        arguments:
+            - '@swarrot.publisher'

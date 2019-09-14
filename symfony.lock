@@ -178,6 +178,18 @@
     "swarrot/swarrot": {
         "version": "v3.4.0"
     },
+    "swarrot/swarrot-bundle": {
+        "version": "1.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.6",
+            "ref": "1c77a3e26d17c85c335d5c255d736da8848069fd"
+        },
+        "files": [
+            "config/packages/swarrot.yaml"
+        ]
+    },
     "symfony/browser-kit": {
         "version": "v4.3.4"
     },

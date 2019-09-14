@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0cde3eecf801299064364de638a2a1c",
+    "content-hash": "c0dab7f09d2dfb5b8bf2124485e39dce",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -691,6 +691,72 @@
                 "worker"
             ],
             "time": "2019-05-19T15:13:16+00:00"
+        },
+        {
+            "name": "swarrot/swarrot-bundle",
+            "version": "v1.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swarrot/SwarrotBundle.git",
+                "reference": "fa854e5d15f2f0e96d5b8447a80d7800abbda552"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swarrot/SwarrotBundle/zipball/fa854e5d15f2f0e96d5b8447a80d7800abbda552",
+                "reference": "fa854e5d15f2f0e96d5b8447a80d7800abbda552",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "psr/log": "^1.0",
+                "swarrot/swarrot": "^3.4",
+                "symfony/config": "^3.4|^4.1",
+                "symfony/console": "^3.4|^4.1",
+                "symfony/dependency-injection": "^3.4|^4.1",
+                "symfony/http-kernel": "^3.4|^4.1",
+                "symfony/yaml": "^3.4|^4.1"
+            },
+            "require-dev": {
+                "doctrine/common": "^2.2",
+                "doctrine/dbal": "^2.2",
+                "php-amqplib/php-amqplib": "^2.9",
+                "phpunit/phpunit": "^7.5",
+                "sentry/sentry-symfony": "^2.3",
+                "symfony/phpunit-bridge": "^4.0"
+            },
+            "suggest": {
+                "php-amqplib/php-amqplib": "Required if using amqp_lib"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Swarrot\\SwarrotBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Dolbeau",
+                    "homepage": "http://odolbeau.fr/"
+                }
+            ],
+            "description": "SwarrotBundle",
+            "keywords": [
+                "bundle",
+                "swarrot"
+            ],
+            "time": "2019-09-08T08:34:19+00:00"
         },
         {
             "name": "symfony/browser-kit",
