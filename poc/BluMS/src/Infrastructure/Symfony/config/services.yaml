@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    #blu_acl_from_green_consumer.processor.service: 'BluMS\Infrastructure\Integration\ACL\Consumer\GreenSwarrotACLConsumer'
+
 
 services:
     # default configuration for services in *this* file
@@ -52,6 +54,16 @@ services:
         class: BluMS\Infrastructure\Integration\ACL\Consumer\RedACLConsumer
         arguments:
             - '@logger'
+
+    blu_acl_from_green_consumer.processor.service:
+        alias: 'BluMS\Infrastructure\Integration\ACL\Consumer\GreenSwarrotACLConsumer'
+
+    BluMS\Infrastructure\Integration\ACL\Consumer\GreenSwarrotACLConsumer:
+        #class: BluMS\Infrastructure\Integration\ACL\Consumer\RedACLConsumer
+        arguments:
+            - '@logger'
+
+
 
     BluMS\Infrastructure\Integration\Outcoming\BluIntegrationEventProducer:
         arguments:

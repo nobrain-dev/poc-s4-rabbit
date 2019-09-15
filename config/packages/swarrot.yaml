@@ -88,3 +88,63 @@ swarrot:
             connection: rabbitmq # use the default connection by default
             exchange: blu_integration_outcomin_exchange
             #routing_key: my_routing_key
+
+        green_integration_publisher:
+            connection: rabbitmq # use the default connection by default
+            exchange: green_integration_outcomin_exchange
+            #routing_key: my_routing_key
+
+
+
+
+
+
+    consumers:
+        blu_acl_from_green_consumer:
+            processor: blu_acl_from_green_consumer.processor.service # Symfony service id implementing Swarrot\Processor\ProcessorInterface
+            middleware_stack: # order matters
+                - configurator: swarrot.processor.signal_handler
+#                  extras:
+#                      signal_handler_signals:
+#                          - SIGTERM
+#                          - SIGINT
+#                          - SIGQUIT
+                - configurator: swarrot.processor.insomniac
+#                - configurator: swarrot.processor.max_messages
+#                    extras:
+#                        max_messages: 100
+                - configurator: swarrot.processor.max_execution_time
+                  extras:
+                        max_execution_time: 300
+#                - configurator: swarrot.processor.memory_limit
+#                    extras:
+#                        memory_limit: null
+#                - configurator: swarrot.processor.doctrine_connection
+#                    extras:
+#                        doctrine_ping: true
+#                        doctrine_close_master: true
+#                - configurator: swarrot.processor.doctrine_object_manager
+                - configurator: swarrot.processor.exception_catcher
+                - configurator: swarrot.processor.ack
+                  extras:
+                        requeue_on_error: false
+                - configurator: swarrot.processor.retry
+                  extras:
+                        retry_exchange: retry
+                        retry_attempts: 3
+                        retry_routing_key_pattern: 'retry_%%attempt%%'
+#                - configurator: swarrot.processor.new_relic
+#                    extras:
+#                        new_relic_app_name: null
+#                        new_relic_license: null
+#                        new_relic_transaction_name: null
+#                - configurator: swarrot.processor.rpc_server
+#                    extras:
+#                        # Exchange on which rpc response will be published with `reply_to` as routing_key.
+#                        # If not configured will publish on default exchange where routing_key is used to define receiving queue.
+#                        rpc_exchange: null
+#                - configurator: swarrot.processor.rpc_client
+#                    extras:
+#                        rpc_client_correlation_id: null
+            extras:
+                poll_interval: 500000

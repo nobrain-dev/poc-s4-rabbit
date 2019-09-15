@@ -53,3 +53,8 @@ services:
         arguments:
             - '@old_sound_rabbit_mq.green_bc_integration_event_producer'
         public: true
+
+    GreenMS\Infrastructure\Integration\Outcoming\GreenIntegrationSwarrotEventPublisher:
+        arguments:
+            - '@swarrot.publisher'
+        public: true
